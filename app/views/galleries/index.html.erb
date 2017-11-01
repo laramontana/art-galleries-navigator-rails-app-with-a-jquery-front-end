@@ -1,0 +1,10 @@
+<h1>Art Galleries Navigator</h1>
+
+  <% @galleries.each do |gallery| %>
+    <h3><%= gallery.title %> <%= "(#{gallery.city})" %></h3>
+    <ul>
+      <% gallery.artists.uniq.each do |artist| %>
+        <li><%= artist.name %></li>
+      <% end %>
+    </ul>
+  <% end %>
