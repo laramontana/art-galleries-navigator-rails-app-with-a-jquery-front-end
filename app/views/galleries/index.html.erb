@@ -1,10 +1,8 @@
-<h1>Art Galleries Navigator</h1>
-
   <% @galleries.each do |gallery| %>
     <h3><%= link_to gallery.title, gallery_path(gallery) %> <%= "(#{gallery.city})" %></h3>
     <ul>
       <% gallery.artists.uniq.each do |artist| %>
-        <li><%= artist.name %></li>
+        <li><%= link_to artist.name, artist_path(artist) %></li>
       <% end %>
     </ul>
   <% end %>
