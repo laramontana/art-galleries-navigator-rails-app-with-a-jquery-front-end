@@ -1,1 +1,12 @@
 <h2>Form for a new painting for <%= @gallery.title%>:</h2>
+<%= form_for @painting, url: gallery_paintings_path(@gallery) do |f| %>
+  <%= f.hidden_field(:artist_id, :value => current_user.id)%>  
+  <%= f.label :title %>
+  <%= f.text_field :title %> <br>
+  <%= f.label :year %>
+  <%= f.number_field :year %><br>
+  <%= f.label :style %>
+  <%= f.text_field :style %> <br>
+  <br>
+  <%= f.submit "Add Painting", { :class=>"button" } %>
+<% end %>
