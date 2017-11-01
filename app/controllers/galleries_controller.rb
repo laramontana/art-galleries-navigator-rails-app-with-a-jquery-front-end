@@ -1,16 +1,11 @@
 class GalleriesController < ApplicationController
-  before_action :set_gallery, only: :show
+  before_action :authenticate_user! 
 
   def index
     @galleries = Gallery.all
   end
 
   def show
-  end
-
-  private
-
-  def set_gallery
     @gallery = Gallery.find(params[:id])
   end
 

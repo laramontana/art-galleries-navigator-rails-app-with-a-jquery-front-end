@@ -1,4 +1,5 @@
 class PaintingsController < ApplicationController
+  before_action :authenticate_user!
 
   def new #new_gallery_painting GET    /galleries/:gallery_id/paintings/new
     @gallery = Gallery.find_by(id: params[:gallery_id])
@@ -18,6 +19,11 @@ class PaintingsController < ApplicationController
       else
         render :new
       end
+  end
+
+  def index #artist_paintings_path GET    /artists/:artist_id/paintings
+    @artist = User.find_by(id: params[:artist_id])
+    @paintings = @artist.paintings
   end
 
 private

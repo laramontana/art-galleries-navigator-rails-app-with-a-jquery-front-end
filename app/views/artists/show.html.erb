@@ -1,9 +1,3 @@
 <h3><%= @artist.name %></h3>
-<dl>
-<% @artist.paintings.each do |painting| %>
-    <dt><%= "'#{painting.title}'" %></dt>
-    <dd><%= painting.style %></dd>
-    <dd><%= painting.year %></dd>
-    <p>
-<% end %>
-</dl>
+
+<%= link_to "#{@artist.name} paintings", artist_paintings_path(@artist) %>
