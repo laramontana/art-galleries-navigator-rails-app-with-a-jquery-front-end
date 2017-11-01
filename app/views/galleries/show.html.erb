@@ -1,3 +1,15 @@
 <h2><%= @gallery.title %></h2>
 <h3>Location: <%=  @gallery.city%></h3>
 <h3>Price: <%=  "$#{@gallery.price}"%></h3>
+<h4>At this gallery you can see:</h4>
+
+<ul>
+  <% @gallery.artists.uniq.each do |artist| %>
+    <li><%= link_to artist.name, artist_path(artist) %></li>
+    <ul>
+      <% artist.paintings.each do |painting| %>
+      <li><%= painting.title if @gallery.paintings.include?(painting)%></li>
+      <% end %>
+    </ul>
+  <% end %>
+</ul>
