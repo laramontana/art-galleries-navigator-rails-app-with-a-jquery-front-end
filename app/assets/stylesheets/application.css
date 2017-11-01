@@ -28,3 +28,13 @@ nav>ul {
 nav ul>li {
     display: inline;
 }
+
+.button {
+  width:200px;
+  background-color:teal;
+  color: white;
+  padding: 10px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}

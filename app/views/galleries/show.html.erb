@@ -14,4 +14,4 @@
   <% end %>
 </ul>
 
-<%= button_to 'Add Paintings to Gallery', paintings_path%>
+<%= link_to 'Add Painting to Gallery', new_gallery_painting_path(@gallery), { :class=>"button" } %>
