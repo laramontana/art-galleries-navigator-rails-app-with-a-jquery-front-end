@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'painting/new'
+
   get 'artists/index'
 
   get 'artists/show'

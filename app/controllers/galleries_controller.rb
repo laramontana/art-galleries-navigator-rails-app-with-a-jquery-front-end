@@ -8,7 +8,6 @@ class GalleriesController < ApplicationController
   def show
   end
 
-
   private
 
   def set_gallery
