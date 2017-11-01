@@ -1,3 +1,4 @@
 <h3><%= @artist.name %></h3>
 
+<%= link_to 'Add Bio', edit_artist_path(@artist), { :class=>"button" } if @artist == current_user && @artist.bio == nil%>
 <%= link_to "#{@artist.name} paintings", artist_paintings_path(@artist) %>
