@@ -14,7 +14,7 @@ class PaintingsController < ApplicationController
     @gallery = Gallery.find_by(id: params[:gallery_id])
       @painting = @gallery.paintings.build(painting_params)
       if @painting.save
-        redirect_to gallery_path(@gallery), :flash => { :notice => "Painting was successfully added!" }
+        redirect_to gallery_path(@gallery), :flash => { :success => "Painting was successfully added!" }
       else
         render :new
       end
