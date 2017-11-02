@@ -23,13 +23,17 @@ class GalleriesController < ApplicationController
   end
 
   def create
-    @gallery = Gallery.create(gallery_params)
-    redirect_to gallery_path(@gallery)
+    @gallery = Gallery.new(gallery_params)
+    if @gallery.save
+      redirect_to gallery_path(@gallery)
+    else
+      render :new
+    end
   end
 
   private
     def gallery_params
-      params.require(:gallery).permit(:title, :city, :price, paintings_attributes: [:title, :year, :style, :artist_id])
+      params.require(:gallery).permit(:title, :city, :price)
     end
 
 end
