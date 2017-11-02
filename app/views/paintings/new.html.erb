@@ -1,6 +1,6 @@
 <h2>Form for a new painting for <%= @gallery.title%>:</h2>
 
-<%= render 'paintings/errors' %>
+<%= render partial: 'layouts/valid_errors', locals: {object: @painting}%>
 
 <%= form_for @painting, url: gallery_paintings_path(@gallery) do |f| %>
   <%= f.hidden_field(:artist_id, :value => current_user.id)%>

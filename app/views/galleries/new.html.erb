@@ -1,14 +1,6 @@
 <h1>New Gallery</h1>
 
-<% if @gallery.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-    <% @gallery.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render partial: 'layouts/valid_errors', locals: {object: @gallery}%>
 
 <%= form_for @gallery do |f| %>
   <%= f.label :title %>
