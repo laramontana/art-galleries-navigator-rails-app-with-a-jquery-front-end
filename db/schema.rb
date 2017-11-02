@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101203037) do
+ActiveRecord::Schema.define(version: 20171102175026) do
 
   create_table "galleries", force: :cascade do |t|
     t.string "title"
@@ -45,8 +45,12 @@ ActiveRecord::Schema.define(version: 20171101203037) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "bio"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["provider"], name: "index_users_on_provider"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["uid"], name: "index_users_on_uid"
   end
 
 end

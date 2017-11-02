@@ -13,12 +13,12 @@ class PaintingsController < ApplicationController
 
   def create # gallery_paintings_path POST   /galleries/:gallery_id/paintings
     @gallery = Gallery.find_by(id: params[:gallery_id])
-      @painting = @gallery.paintings.build(painting_params)
-      if @painting.save
-        redirect_to gallery_path(@gallery), :flash => { :success => "Painting was successfully added!" }
-      else
-        render :new
-      end
+    @painting = @gallery.paintings.build(painting_params)
+    if @painting.save
+      redirect_to gallery_path(@gallery), flash[:success] = "Painting was successfully added!"
+    else
+      render :new
+    end
   end
 
   def index #artist_paintings_path GET    /artists/:artist_id/paintings
