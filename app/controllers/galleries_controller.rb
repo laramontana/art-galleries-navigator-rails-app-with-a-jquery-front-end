@@ -17,4 +17,13 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.find(params[:id])
   end
 
+  def new
+    @gallery = Gallery.new
+    @gallery.paintings.build
+  end
+
+  def create
+    raise params.inspect
+  end
+
 end
