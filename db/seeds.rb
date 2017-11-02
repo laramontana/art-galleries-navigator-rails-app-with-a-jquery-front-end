@@ -20,7 +20,7 @@
       { name: 'Jackson Pollock', email: 'jp@yahoo.com', password: '999999999' },
       { name: 'Mark Rothko', email: 'mrothko@gmail.com', password: '888888888' },
       { name: 'Lyubov Popova', email: 'lulu@yandex.ru', password: '777777777' },
-      { name: 'Kazemir Malevich', email: 'mr.blacksquare@gmail.com', password: '111111111' },
+      { name: 'Kazimir Malevich', email: 'mr.blacksquare@gmail.com', password: '111111111' },
       { name: 'Willem de Kooning', email: 'kooning@mail.ru', password: '222222222' }
     ]
   )
