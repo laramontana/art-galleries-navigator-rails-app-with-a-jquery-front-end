@@ -1,7 +1,10 @@
 <div>
-  <h3>Filter galleries:</h3>
+  <h3>Filter galleries</h3>
   <%= form_tag("/galleries", method: "get") do %>
+    <%= label_tag "by city" %>
     <%= select_tag "city", options_for_select(@cities), include_blank: true %>
+    <%= label_tag "by style" %>
+    <%= select_tag "style", options_for_select(@styles), include_blank: true %>
     <%= submit_tag "Filter" %>
   <% end %>
 </div>

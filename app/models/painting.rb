@@ -7,4 +7,8 @@ class Painting < ApplicationRecord
   validates :year, presence: true
   validates :style, presence: true
 
+  def self.styles
+    self.all.collect {|painting| painting.style}.uniq
+  end
+
 end

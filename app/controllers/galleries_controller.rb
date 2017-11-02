@@ -3,8 +3,11 @@ class GalleriesController < ApplicationController
 
   def index
     @cities = Gallery.cities
-    if !params[:city].blank?
+    @styles = Painting.styles
+    if !params[:city].blank? 
       @galleries = Gallery.sort_by_city(params[:city])
+    elsif !params[:style].blank?
+      @galleries = Gallery.sort_by_style(params[:style])
     else
       @galleries = Gallery.all
     end
