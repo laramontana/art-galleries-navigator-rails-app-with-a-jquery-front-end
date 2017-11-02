@@ -1,3 +1,12 @@
+<div>
+  <h3>Filter galleries:</h3>
+  <%= form_tag("/galleries", method: "get") do %>
+    <%= select_tag "city", options_for_select(["Today", "Old News"]), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div>
+
+
   <% @galleries.each do |gallery| %>
     <h3><%= link_to gallery.title, gallery_path(gallery) %> <%= "(#{gallery.city})" %></h3>
     <ul>
