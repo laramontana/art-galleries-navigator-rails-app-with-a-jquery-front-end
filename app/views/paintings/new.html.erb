@@ -1,14 +1,6 @@
 <h2>Form for a new painting for <%= @gallery.title%>:</h2>
 
-<% if @painting.errors.any? %>
-  <div id="error_explanation">
-    <ul>
-    <% @painting.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
-    <% end %>
-    </ul>
-  </div>
-<% end %>
+<%= render 'paintings/errors' %>
 
 <%= form_for @painting, url: gallery_paintings_path(@gallery) do |f| %>
   <%= f.hidden_field(:artist_id, :value => current_user.id)%>

@@ -1,0 +1,9 @@
+<% if @painting.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @painting.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
