@@ -3,7 +3,6 @@ class Gallery < ApplicationRecord
 	has_many :artists, through: :paintings, class_name: 'User'
   accepts_nested_attributes_for :paintings
 
-
   def self.cities
     self.all.collect {|gallery| gallery.city}.uniq
   end

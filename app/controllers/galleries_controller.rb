@@ -19,11 +19,17 @@ class GalleriesController < ApplicationController
 
   def new
     @gallery = Gallery.new
-    @gallery.paintings.build
+    @painting = @gallery.paintings.build
   end
 
   def create
-    raise params.inspect
+    @gallery = Gallery.create(gallery_params)
+    redirect_to gallery_path(@gallery)
   end
+
+  private
+    def gallery_params
+      params.require(:gallery).permit(:title, :city, :price, paintings_attributes: [:title, :year, :style, :artist_id])
+    end
 
 end

@@ -7,13 +7,14 @@
   <%= f.label :price %>
   <%= f.number_field :price %>
 
-  <%= f.fields_for :paintings, @gallery.paintings.build do |p| %>
+  <%= f.fields_for :paintings, @painting do |p| %>
     <%= p.label :title %>
     <%= p.text_field :title %>
     <%= p.label :style %>
     <%= p.text_field :style %>
     <%= p.label :year %>
     <%= p.number_field :year %>
+    <%= p.hidden_field(:artist_id, :value => current_user.id)%>
   <% end %>
   <%= f.submit %>
 <% end %>

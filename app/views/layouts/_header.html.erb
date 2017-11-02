@@ -1,6 +1,6 @@
-<nav class="">
+<p id="signed-in-as"><%= "Signed in as #{current_user.name}" if user_signed_in? %></p>
 
-  <%= "Signed in as #{current_user.name}" if user_signed_in?%>
+<nav>
   <ul>
     <li><%= link_to  "Home", root_path %></li>
     <li><%= link_to  "Artists", artists_path if user_signed_in?%></li>
