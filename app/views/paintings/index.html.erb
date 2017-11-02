@@ -1,8 +1,1 @@
-<dl>
-<% @paintings.each do |painting| %>
-    <dt><%= "'#{painting.title}'" %></dt>
-    <dd><%= painting.style %></dd>
-    <dd><%= painting.year %></dd>
-    <p>
-<% end %>
-</dl>
+<%= render :partial => "painting", :collection => @paintings %>
