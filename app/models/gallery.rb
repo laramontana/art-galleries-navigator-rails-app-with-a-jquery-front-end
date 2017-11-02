@@ -7,8 +7,8 @@ class Gallery < ApplicationRecord
     self.all.collect {|gallery| gallery.city}.uniq
   end
 
-  # def self.sort_by_city(city)
-  #   self.where(city: city)
-  # end
+  def self.sort_by_city(city)  
+    self.where(city: city)
+  end
 
 end
