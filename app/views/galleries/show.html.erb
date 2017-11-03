@@ -6,6 +6,7 @@
 <ul>
   <% @gallery.artists.uniq.each do |artist| %>
     <li><%= link_to artist.name, artist_path(artist) %></li>
+
     <ul>
       <% artist.paintings.each do |painting| %>
       <li><%= painting.title if @gallery.paintings.include?(painting)%></li>

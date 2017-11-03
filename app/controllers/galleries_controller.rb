@@ -19,7 +19,7 @@ class GalleriesController < ApplicationController
 
   def new
     @gallery = Gallery.new
-    @painting = @gallery.paintings.build
+    @paintings = current_user.paintings
   end
 
   def create
@@ -33,7 +33,10 @@ class GalleriesController < ApplicationController
 
   private
     def gallery_params
-      params.require(:gallery).permit(:title, :city, :price)
+      params.require(:gallery).permit(:title, :city, :price,
+                                      painting_ids:[],
+                                      :painting_attributes => [:artist_id, :title, :style, :year])
     end
+
 
 end
