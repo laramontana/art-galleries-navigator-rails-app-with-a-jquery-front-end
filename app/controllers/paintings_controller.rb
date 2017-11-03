@@ -6,8 +6,7 @@ class PaintingsController < ApplicationController
     if @gallery
       @painting = @gallery.paintings.build
     else
-      flash[:error] = "Gallery is not found"
-      redirect_to galleries_path
+      redirect_to galleries_path, :flash => { :error => "Gallery is not found" }
     end
   end
 
@@ -15,7 +14,7 @@ class PaintingsController < ApplicationController
     @gallery = Gallery.find_by(id: params[:gallery_id])
     @painting = @gallery.paintings.build(painting_params)
     if @painting.save
-      redirect_to gallery_path(@gallery), flash[:success] = "Painting was successfully added!"
+      redirect_to gallery_path(@gallery), :flash => { :success => "Painting was successfully added!" }
     else
       render :new
     end
