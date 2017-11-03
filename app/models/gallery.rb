@@ -18,11 +18,9 @@ class Gallery < ApplicationRecord
     self.includes(:paintings).where(paintings: { style: style })
   end
 
-# painting_attributes"=>{"user_id"=>"1", "title"=>"hgf", "style"=>"hng", "year"=>"3"}
-  def painting_attributes=(painting_attributes)
+  def painting=(painting_attributes)
     painting = Painting.create(painting_attributes)
     self.paintings << painting
   end
-
 
 end

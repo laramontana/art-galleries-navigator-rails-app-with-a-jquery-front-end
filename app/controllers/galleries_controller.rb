@@ -19,6 +19,7 @@ class GalleriesController < ApplicationController
 
   def new
     @gallery = Gallery.new
+    @painting = Painting.new
     @paintings = current_user.paintings
   end
 
@@ -27,6 +28,8 @@ class GalleriesController < ApplicationController
     if @gallery.save
       redirect_to gallery_path(@gallery)
     else
+      @paintings = current_user.paintings
+      @painting = Painting.create(gallery_params[:painting])
       render :new
     end
   end
@@ -35,7 +38,7 @@ class GalleriesController < ApplicationController
     def gallery_params
       params.require(:gallery).permit(:title, :city, :price,
                                       painting_ids:[],
-                                      :painting_attributes => [:artist_id, :title, :style, :year])
+                                      :painting => [:artist_id, :title, :style, :year])
     end
 
 

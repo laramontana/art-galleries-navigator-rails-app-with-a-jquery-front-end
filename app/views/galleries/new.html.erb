@@ -11,10 +11,12 @@
   <%= f.number_field :price %> <br>
 
   <%= content_tag(:p, "Select your paintings, which you would like to present") if current_user.paintings.any? %>
-  <%= f.collection_check_boxes(:painting_ids, @paintings, :id, :title) %> <br>
+  <%= f.collection_check_boxes :painting_ids, @paintings, :id, :title %> <br>
+
+  <%= render partial: 'layouts/valid_errors', locals: {object: @painting}%>
 
   <%= content_tag(:p, "Add a new painting") %>
-  <%= f.fields_for :painting_attributes do |p| %>
+  <%= f.fields_for @painting do |p| %>
     <%= p.hidden_field :artist_id, :value => current_user.id %>
     <%= p.label :title %>
     <%= p.text_field :title %> <br>
