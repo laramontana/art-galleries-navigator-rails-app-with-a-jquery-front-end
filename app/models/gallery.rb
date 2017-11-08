@@ -5,6 +5,8 @@ class Gallery < ApplicationRecord
   validates :title, uniqueness: true
   validates :city, presence: true
   validates :price, presence: true
+  validates :painting_ids, presence: { message: "Please Select at least on of your paintings" }
+
 
   def self.cities
     self.all.collect {|gallery| gallery.city}.uniq
@@ -19,8 +21,10 @@ class Gallery < ApplicationRecord
   end
 
   def painting=(painting_attributes)
-    painting = Painting.create(painting_attributes)
-    self.paintings << painting
+    if painting_attributes[:title].present? || painting_attributes[:year].present? || painting_attributes[:style].present?
+        painting = Painting.create(painting_attributes)
+        self.paintings << painting
+      end
   end
 
 end
