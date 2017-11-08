@@ -5,7 +5,7 @@ class Gallery < ApplicationRecord
   validates :title, uniqueness: true
   validates :city, presence: true
   validates :price, presence: true
-  validates :painting_ids, presence: { message: "Please Select at least on of your paintings" }
+  validates :painting_ids, presence: { message: "Please select at least one of your paintings" }
 
 
   def self.cities
