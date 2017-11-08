@@ -28,7 +28,6 @@ class GalleriesController < ApplicationController
     if @gallery.save
       redirect_to gallery_path(@gallery)
     else
-      binding.pry
       @paintings = current_user.paintings
       render :new
     end
