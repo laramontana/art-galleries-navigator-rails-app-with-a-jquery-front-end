@@ -1,3 +1,5 @@
+<%= link_to "Next Artist", '#', :class=>"js-next", "data-id" => "#{@artist.id}" unless @artist == User.last %>
+
 <h3><%= @artist.name %></h3>
 
 <%= link_to "#{@artist.name} paintings", artist_paintings_path(@artist), :class=>"js-artist-paintings", "data-id" => "#{@artist.id}" if @artist.paintings.any? %>

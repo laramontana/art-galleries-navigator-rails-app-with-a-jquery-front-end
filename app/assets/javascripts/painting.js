@@ -3,7 +3,6 @@ $(document).on("turbolinks:load", function(){
 });
 
   function attachListeners(){
-    console.log("listeners atthached")
     $(".js-artist-paintings").on("click", showPaintings)
   };
 
