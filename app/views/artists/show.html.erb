@@ -1,30 +1,38 @@
 <h3><%= @artist.name %></h3>
 
 <%= link_to "#{@artist.name} paintings", artist_paintings_path(@artist), :class=>"js-artist-paintings", "data-id" => "#{@artist.id}" if @artist.paintings.any? %>
+
+<div class="painting-container">
+
+</div>
+
 <p><%= @artist.bio if @artist.bio != nil%></p>
 
 <%= link_to 'Add Bio', edit_artist_path(@artist), { :class=>"button" } if @artist == current_user && @artist.bio == nil%>
 <%= link_to 'Edit Bio', edit_artist_path(@artist) if @artist == current_user && @artist.bio%> <br>
 
-<dl class="painting">
-    <dt class="p-title"></dt>
-    <dd class="p-style"></dd>
-    <dd class="p-year"></dd>
-</dl>
+<script id="painting-template" type="text/x-handlebars-template">
+  <dl class="painting-info">
+      <dt class="p-title">{{title}}</dt>
+      <dd class="p-style">{{style}}</dd>
+      <dd class="p-year">{{year}}</dd>
+  </dl> <br>
+</script>
 
 <script type="text/javascript" charset="utf-8">
-$(function() {
-  $(".js-artist-paintings").on("click", function(e) {
-    e.preventDefault();
+  $(function() {
+    $(".js-artist-paintings").on("click", function(e) {
+      e.preventDefault();
 
-    var id = $(this).data("id");
-    $.get("/artists/" + id + "/paintings.json", function(json) {
-        json.forEach(function (painting) {
-          $(".p-title").html(painting.title)
-          $(".p-style").html(painting.style)
-          $(".p-year").html(painting.year)
-        })
+      var id = $(this).data("id");
+
+      $.get("/artists/" + id + "/paintings.json", function(json) {
+        var template = Handlebars.compile(document.getElementById("painting-template").innerHTML);
+        for(var i=0;i<json.length;i++) {
+          var result = template(json[i]);
+          document.getElementsByClassName("painting-container")[0].innerHTML += result;
+        }
+      });
     });
   });
-});
 </script>
