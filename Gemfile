@@ -28,6 +28,9 @@ gem 'jbuilder', '~> 2.5'
 gem 'devise'
 gem 'pry'
 gem 'omniauth-facebook'
+gem 'active_model_serializers'
+gem 'jquery-rails'
+gem 'dotenv-rails', groups: [:development, :test]
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

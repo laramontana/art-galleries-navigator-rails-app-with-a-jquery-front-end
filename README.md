@@ -1,8 +1,8 @@
 # Art Galleries Navigator
 
-## Rails portfolio project
+## Rails App with a jQuery Front End
 
-This is a complete Ruby on Rails application that manages data about artists and galleries through complex forms and RESTful routes. It is a Content Management System, where artists can find galleries to participate in with their paintings, or can add a new gallery. Each artist must be logged in in order to have an access to any content. Logging in is also available via existing Facebook account.
+This is a complete Ruby on Rails application with dynamic features that are possible through jQuery and a JSON API. The application manages data about artists and galleries through complex forms and RESTful routes. It is a Content Management System, where artists can find galleries to participate in with their paintings, or can add a new gallery. Each artist must be logged in in order to have an access to any content. Logging in is also available via existing Facebook account.
 
 ## Install instructions
 
@@ -10,7 +10,7 @@ Run `bundle install` to install all required gems. Then run `rails s` and click 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/laramontana/art-galleries-navigator-rails-portfolio-project This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/laramontana/art-galleries-navigator-rails-app-with-a-jquery-front-end This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
