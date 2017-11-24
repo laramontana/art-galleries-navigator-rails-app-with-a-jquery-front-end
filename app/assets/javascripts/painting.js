@@ -5,6 +5,7 @@ $(document).on("turbolinks:load", function(){
   function attachListeners(){
     $(".js-artist-paintings").on("click", showPaintings)
     $(".js-next").on("click", nextArtist)
+    $(".now-at-gallery").on("click", showGalleryInfo)
   };
 
   function showPaintings(e) {
@@ -37,3 +38,13 @@ $(document).on("turbolinks:load", function(){
       }
     });
   };
+
+  function showGalleryInfo(e) {
+    e.preventDefault();
+    var id = $(this).data("id");
+    $.get("/galleries/" + id + ".json", function(paintings) {
+      debugger
+
+    })
+
+  }

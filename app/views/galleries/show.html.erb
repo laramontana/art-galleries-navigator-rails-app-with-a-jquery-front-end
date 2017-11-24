@@ -1,7 +1,7 @@
 <h2><%= @gallery.title %></h2>
 <h3>Location: <%=  @gallery.city%></h3>
 <h3>Price: <%=  "$#{@gallery.price}"%></h3>
-<%= link_to 'At this gallery you can see...', new_gallery_painting_path(@gallery), { :class=>"now-at-gallery" } if @gallery.artists.present?%>
+<%= link_to 'At this gallery you can see...', new_gallery_painting_path(@gallery), :class=>"now-at-gallery", "data-id" => "#{@gallery.id}"if @gallery.artists.present?%>
 
 
 <div class="now-at-gallery"></div>
@@ -9,10 +9,7 @@
 <%= link_to 'Add Painting to Gallery', new_gallery_painting_path(@gallery), { :class=>"button" } %>
 
 <script id="now-at-gallery-template" type="text/x-handlebars-template">
-  <ul class="gallery-artist">
-      <li class="artist-name"></li>
-      <ul class="artist-paintings">
-        <li class="painting-title"></li>
-      </ul>
-  </ul>
+    <ul class="gallery-paintings">
+      <li class="painting-title">{{title}} by {{artist.name}}</li>
+    </ul>
 </script>

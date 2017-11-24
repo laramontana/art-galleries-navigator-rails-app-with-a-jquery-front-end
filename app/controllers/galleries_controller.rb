@@ -15,6 +15,11 @@ class GalleriesController < ApplicationController
 
   def show
     @gallery = Gallery.find(params[:id])
+    @paintings = @gallery.paintings
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @paintings }
+    end
   end
 
   def new
