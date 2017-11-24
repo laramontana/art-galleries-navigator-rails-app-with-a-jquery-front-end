@@ -23,6 +23,10 @@ class PaintingsController < ApplicationController
   def index #artist_paintings_path GET    /artists/:artist_id/paintings
     @artist = User.find_by(id: params[:artist_id])
     @paintings = @artist.paintings
+    respond_to do |format|
+      format.html { render :index }
+      format.json { render json: @paintings }
+    end
   end
 
 private
