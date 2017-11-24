@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body data-user="<%= current_user.id %>">
+  <body data-user="<%= current_user.id %>" data-last-user="<%= User.last.id %>">
   <div class="wrapper">
 
         <h1 id='logo'>Art Galleries Navigator</h1>

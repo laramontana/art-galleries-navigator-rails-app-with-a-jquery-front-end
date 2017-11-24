@@ -6,6 +6,7 @@ $(document).on("turbolinks:load", function(){
     $(".js-artist-paintings").on("click", showPaintings)
     $(".js-next").on("click", nextArtist)
     $(".now-at-gallery").on("click", showGalleryInfo)
+    $('.now-at-gallery').unbind('click', true);
   };
 
   function showPaintings(e) {
@@ -36,6 +37,7 @@ $(document).on("turbolinks:load", function(){
         $(".edit-bio").remove();
         $(".add-bio").remove();
       }
+      if (parseInt($("body").attr("data-last-user")) === nextArtist.id) { $(".js-next").remove(); }
     });
   };
 
@@ -43,7 +45,12 @@ $(document).on("turbolinks:load", function(){
     e.preventDefault();
     var id = $(this).data("id");
     $.get("/galleries/" + id + ".json", function(paintings) {
-      debugger
+
+      var template = Handlebars.compile(document.getElementById("now-at-gallery-template").innerHTML);
+      for(var i=0;i<paintings.length;i++) {
+        var result = template(paintings[i]);
+        $(".now-at-gallery-ul")[0].innerHTML += result;
+      };
 
     })
 
