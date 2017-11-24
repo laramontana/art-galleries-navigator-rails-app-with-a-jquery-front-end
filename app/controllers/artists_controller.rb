@@ -7,6 +7,10 @@ class ArtistsController < ApplicationController
 
   def show
     @artist = User.find(params[:id])
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @artist, serializer: ArtistSerializer }
+    end
   end
 
   def edit
