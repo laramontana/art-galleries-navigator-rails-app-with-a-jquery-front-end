@@ -8,8 +8,8 @@
 
 <p class="artistBio"><%= @artist.bio if @artist.bio != nil%></p>
 
-<%= link_to 'Add Bio', edit_artist_path(@artist), { :class=>"button" } if @artist == current_user && @artist.bio == nil%>
-<%= link_to 'Edit Bio', edit_artist_path(@artist) if @artist == current_user && @artist.bio%> <br>
+<%= link_to 'Add Bio', edit_artist_path(@artist), { :class=>"button add-bio" } if @artist == current_user && @artist.bio == nil%>
+<%= link_to 'Edit Bio', edit_artist_path(@artist), :class=>"edit-bio" if @artist == current_user && @artist.bio%> <br>
 
 <script id="painting-template" type="text/x-handlebars-template">
   <dl class="painting-info">

@@ -23,13 +23,18 @@ $(document).on("turbolinks:load", function(){
   function nextArtist(e) {
     e.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/artists/" + nextId + ".json", function(data) {
-      $(".artistName").text(data.name);
-      $(".artistBio").text(data.bio);
-      $(".js-artist-paintings").attr("data-id", data.id);
-      $(".js-artist-paintings")[0].pathname = "/artists/" + data.id + "/paintings"
-      $(".js-artist-paintings")[0].innerHTML = data.name + " paintings"
-      $(".js-next").attr("data-id", data["id"]);
+    $.get("/artists/" + nextId + ".json", function(nextArtist) {
+      $(".artistName").text(nextArtist.name);
+
+      $(".artistBio").text(nextArtist.bio);
+      $(".js-artist-paintings").attr("data-id", nextArtist.id);
+      $(".js-artist-paintings")[0].pathname = "/artists/" + nextArtist.id + "/paintings"
+      $(".js-artist-paintings")[0].innerHTML = nextArtist.name + " paintings"
+      $(".js-next").attr("data-id", nextArtist.id);
       $(".painting-container")[0].innerHTML = ''
+      if (parseInt($("body").attr("data-user")) !== nextArtist.id) {
+        $(".edit-bio").remove();
+        $(".add-bio").remove();
+      }
     });
   };
