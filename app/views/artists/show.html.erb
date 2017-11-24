@@ -18,21 +18,3 @@
       <dd class="p-year">{{year}}</dd>
   </dl> <br>
 </script>
-
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    $(".js-artist-paintings").on("click", function(e) {
-      e.preventDefault();
-
-      var id = $(this).data("id");
-
-      $.get("/artists/" + id + "/paintings.json", function(json) {
-        var template = Handlebars.compile(document.getElementById("painting-template").innerHTML);
-        for(var i=0;i<json.length;i++) {
-          var result = template(json[i]);
-          document.getElementsByClassName("painting-container")[0].innerHTML += result;
-        }
-      });
-    });
-  });
-</script>
