@@ -1,18 +1,18 @@
 <h2><%= @gallery.title %></h2>
 <h3>Location: <%=  @gallery.city%></h3>
 <h3>Price: <%=  "$#{@gallery.price}"%></h3>
-<h4><%= "At this gallery you can see:" if @gallery.artists.present?%></h4>
+<%= link_to 'At this gallery you can see...', new_gallery_painting_path(@gallery), { :class=>"now-at-gallery" } if @gallery.artists.present?%>
 
-<ul>
-  <% @gallery.artists.uniq.each do |artist| %>
-    <li><%= link_to artist.name, artist_path(artist) %></li>
 
-    <ul>
-      <% artist.paintings.each do |painting| %>
-      <li><%= painting.title if @gallery.paintings.include?(painting)%></li>
-      <% end %>
-    </ul>
-  <% end %>
-</ul>
+<div class="now-at-gallery"></div>
 
 <%= link_to 'Add Painting to Gallery', new_gallery_painting_path(@gallery), { :class=>"button" } %>
+
+<script id="now-at-gallery-template" type="text/x-handlebars-template">
+  <ul class="gallery-artist">
+      <li class="artist-name"></li>
+      <ul class="artist-paintings">
+        <li class="painting-title"></li>
+      </ul>
+  </ul>
+</script>

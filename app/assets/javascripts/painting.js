@@ -19,7 +19,6 @@ $(document).on("turbolinks:load", function(){
     });
   };
 
-
   function nextArtist(e) {
     e.preventDefault();
     var nextId = parseInt($(".js-next").attr("data-id")) + 1;
