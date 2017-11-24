@@ -6,15 +6,24 @@
 <%= link_to 'Add Bio', edit_artist_path(@artist), { :class=>"button" } if @artist == current_user && @artist.bio == nil%>
 <%= link_to 'Edit Bio', edit_artist_path(@artist) if @artist == current_user && @artist.bio%> <br>
 
+<dl class="painting">
+    <dt class="p-title"></dt>
+    <dd class="p-style"></dd>
+    <dd class="p-year"></dd>
+</dl>
+
 <script type="text/javascript" charset="utf-8">
 $(function() {
   $(".js-artist-paintings").on("click", function(e) {
     e.preventDefault();
 
     var id = $(this).data("id");
-    $.get("/artist/" + id + "/paintings"".json", function(json) {
-
-
+    $.get("/artists/" + id + "/paintings.json", function(json) {
+        json.forEach(function (painting) {
+          $(".p-title").html(painting.title)
+          $(".p-style").html(painting.style)
+          $(".p-year").html(painting.year)
+        })
     });
   });
 });
