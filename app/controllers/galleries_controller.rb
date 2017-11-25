@@ -32,8 +32,8 @@ class GalleriesController < ApplicationController
     @gallery = Gallery.new(gallery_params)
     if @gallery.save
       respond_to do |format|
-        format.html { render :show }
-        format.json { render json: @gallery, serializer: GallerySerializer }
+        format.html { redirect_to gallery_path(@gallery)}
+        format.json { render json: @gallery }
       end
     else
       @paintings = current_user.paintings

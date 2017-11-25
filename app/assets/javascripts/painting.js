@@ -4,7 +4,6 @@ $(document).on("turbolinks:load", function(){
 
   function attachListeners(){
     $(".js-artist-paintings").on("click", showPaintings)
-    $(".js-next").on("click", nextArtist)
     $(".js-now-at-gallery").on("click", showGalleryPaintings)
     $(".js-new-gallery-form").on("submit", showNewGallery)
   };
@@ -18,26 +17,6 @@ $(document).on("turbolinks:load", function(){
         var result = template(json[i]);
         $(".painting-container")[0].innerHTML += result;
       };
-    });
-  };
-
-  function nextArtist(e) {
-    e.preventDefault();
-    var nextId = parseInt($(".js-next").attr("data-id")) + 1;
-    $.get("/artists/" + nextId + ".json", function(nextArtist) {
-      $(".artistName").text(nextArtist.name);
-
-      $(".artistBio").text(nextArtist.bio);
-      $(".js-artist-paintings").attr("data-id", nextArtist.id);
-      $(".js-artist-paintings")[0].pathname = "/artists/" + nextArtist.id + "/paintings"
-      $(".js-artist-paintings")[0].innerHTML = nextArtist.name + " paintings"
-      $(".js-next").attr("data-id", nextArtist.id);
-      $(".painting-container")[0].innerHTML = ''
-      if (parseInt($("body").attr("data-user")) !== nextArtist.id) {
-        $(".edit-bio").remove();
-        $(".add-bio").remove();
-      }
-      if (parseInt($("body").attr("data-last-user")) === nextArtist.id) { $(".js-next").remove(); }
     });
   };
 
@@ -56,7 +35,10 @@ $(document).on("turbolinks:load", function(){
 
   function showNewGallery(e) {
     e.preventDefault();
-    $(".js-new-gallery-form").remove()
-    console.log($(this).serialize())
-debugger
+    var values = $(this).serialize();
+
+    $.post("/galleries.json", values, function (gallery) {
+      debugger
+    })
+
   }
