@@ -31,7 +31,10 @@ class GalleriesController < ApplicationController
   def create
     @gallery = Gallery.new(gallery_params)
     if @gallery.save
-      redirect_to gallery_path(@gallery)
+      respond_to do |format|
+        format.html { render :show }
+        format.json { render json: @gallery, serializer: GallerySerializer }
+      end
     else
       @paintings = current_user.paintings
       render :new

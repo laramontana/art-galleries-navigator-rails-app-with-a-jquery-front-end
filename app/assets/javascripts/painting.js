@@ -55,5 +55,8 @@ $(document).on("turbolinks:load", function(){
   };
 
   function showNewGallery(e) {
-
+    e.preventDefault();
+    $(".js-new-gallery-form").remove()
+    console.log($(this).serialize())
+debugger
   }
