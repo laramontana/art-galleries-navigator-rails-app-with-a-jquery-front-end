@@ -6,7 +6,6 @@ $(document).on("turbolinks:load", function(){
     $(".js-artist-paintings").on("click", showPaintings)
     $(".js-next").on("click", nextArtist)
     $(".now-at-gallery").on("click", showGalleryInfo)
-    $('.now-at-gallery').unbind('click', true);
   };
 
   function showPaintings(e) {
