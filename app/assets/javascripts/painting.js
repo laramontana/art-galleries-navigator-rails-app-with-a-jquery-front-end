@@ -5,7 +5,7 @@ $(document).on("turbolinks:load", function(){
   function attachListeners(){
     $(".js-artist-paintings").on("click", showPaintings)
     $(".js-next").on("click", nextArtist)
-    $(".now-at-gallery").on("click", showGalleryInfo)
+    $(".js-now-at-gallery").on("click", showGalleryPaintings)
   };
 
   function showPaintings(e) {
@@ -40,7 +40,7 @@ $(document).on("turbolinks:load", function(){
     });
   };
 
-  function showGalleryInfo(e) {
+  function showGalleryPaintings(e) {
     e.preventDefault();
     var id = $(this).data("id");
     $.get("/galleries/" + id + ".json", function(paintings) {
