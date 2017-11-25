@@ -6,6 +6,7 @@ $(document).on("turbolinks:load", function(){
     $(".js-artist-paintings").on("click", showPaintings)
     $(".js-next").on("click", nextArtist)
     $(".js-now-at-gallery").on("click", showGalleryPaintings)
+    $(".js-new-gallery-form").on("submit", showNewGallery)
   };
 
   function showPaintings(e) {
@@ -50,7 +51,9 @@ $(document).on("turbolinks:load", function(){
         var result = template(paintings[i]);
         $(".now-at-gallery-ul")[0].innerHTML += result;
       };
+    });
+  };
 
-    })
+  function showNewGallery(e) {
 
   }

@@ -2,7 +2,7 @@
 
 <%= render partial: 'layouts/valid_errors', locals: {object: @gallery}%>
 
-<%= form_for @gallery do |f| %>
+<%= form_for @gallery, html: {class: "js-new-gallery-form"} do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %> <br>
   <%= f.label :city %>
