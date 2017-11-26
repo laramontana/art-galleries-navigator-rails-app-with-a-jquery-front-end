@@ -9,5 +9,7 @@
 <%= link_to 'Add Painting to Gallery', new_gallery_painting_path(@gallery), { :class=>"button" } %>
 
 <script id="now-at-gallery-template" type="text/x-handlebars-template">
+  {{#each this}}
       <li class="painting-title"><strong>{{title}}</strong> by {{artist.name}}</li>
+  {{/each}}
 </script>
