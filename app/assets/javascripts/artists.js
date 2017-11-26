@@ -3,12 +3,11 @@ $(document).on("turbolinks:load", function(){
 });
 
 function attachArtistsListeners(){
-  $(".js-next").on("click", nextArtist)
+  $(".js-next").on("click", nextArtist);
 };
 
 function nextArtist(e) {
   e.preventDefault();
-  attachPaintingsListeners()
   var nextId = parseInt($(".js-next").attr("data-id")) + 1;
   $.get("/artists/" + nextId + ".json", function(nextArtist) {
     var template = Handlebars.compile(document.getElementById("artist-info-template").innerHTML);
@@ -19,5 +18,7 @@ function nextArtist(e) {
       $(".add-bio").remove();
     }
     if (parseInt($("body").attr("data-last-user")) === nextArtist.id) { $(".js-next").remove(); }
+    attachArtistsListeners();
+    attachPaintingsListeners();
   });
 };
