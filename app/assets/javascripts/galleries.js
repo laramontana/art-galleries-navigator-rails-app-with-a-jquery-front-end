@@ -25,7 +25,9 @@ function showNewGallery(e) {
   var values = $(this).serialize();
 
   $.post("/galleries.json", values, function (gallery) {
-    debugger
+    var template = Handlebars.compile(document.getElementById("new-gallery-template").innerHTML);
+    $(".new-gallery")[0].innerHTML = template(gallery);
+    $(".js-now-at-gallery").on("click", showGalleryPaintings)
   })
 
 }

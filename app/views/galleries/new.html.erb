@@ -35,7 +35,11 @@
   <h2 class="galleryTitle">{{title}}</h2>
   <h3 class="galleryCity">{{city}}</h3>
   <h3 class="galleryPrice">Price: ${{price}}</h3>
-  <a href="#" class="js-now-at-gallery" data-id="{{id}}">At this gallery you can see...</a>
+  <a class="js-now-at-gallery" data-id="{{id}}" href="#">At this gallery you can see...</a>
   <p>
   <ul class="now-at-gallery-ul"></ul>
+</script>
+
+<script id="now-at-gallery-template" type="text/x-handlebars-template">
+      <li class="painting-title"><strong>{{title}}</strong> by {{artist.name}}</li>
 </script>
