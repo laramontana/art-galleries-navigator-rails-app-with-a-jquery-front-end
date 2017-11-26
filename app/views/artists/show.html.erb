@@ -1,12 +1,14 @@
-<%= link_to "Next Artist", '#', :class=>"js-next", "data-id" => "#{@artist.id}" unless @artist == User.last %>
+<div class="artist-container">
+  <%= link_to "Next Artist", '#', :class=>"js-next", "data-id" => "#{@artist.id}" unless @artist == User.last %>
 
-<h3 class="artistName"><%= @artist.name %></h3>
+  <h3 class="artistName"><%= @artist.name %></h3>
 
-<%= link_to "#{@artist.name} paintings", artist_paintings_path(@artist), :class=>"js-artist-paintings", "data-id" => "#{@artist.id}" if @artist.paintings.any? %>
+  <%= link_to "#{@artist.name} paintings", artist_paintings_path(@artist), :class=>"js-artist-paintings", "data-id" => "#{@artist.id}" if @artist.paintings.any? %>
 
-<div class="painting-container"></div>
+  <div class="painting-container"></div>
 
-<p class="artistBio"><%= @artist.bio if @artist.bio != nil%></p>
+  <p class="artistBio"><%= @artist.bio if @artist.bio != nil%></p>
+</div>
 
 <%= link_to 'Add Bio', edit_artist_path(@artist), { :class=>"button add-bio" } if @artist == current_user && @artist.bio == nil%>
 <%= link_to 'Edit Bio', edit_artist_path(@artist), :class=>"edit-bio" if @artist == current_user && @artist.bio%> <br>
@@ -17,4 +19,12 @@
       <dd class="p-style">{{style}}</dd>
       <dd class="p-year">{{year}}</dd>
   </dl> <br>
+</script>
+
+<script id="artist-info-template" type="text/x-handlebars-template">
+  <a class="js-next" data-id="{{id}}" href="#">Next Artist</a>
+  <h3 class="artistName">{{name}}</h3>
+  <a class="js-artist-paintings" data-id="{{id}}" href="/artists/{{id}}/paintings">{{name}} paintings</a>
+  <div class="painting-container"></div>
+  <p class="artistBio">{{bio}}</p>
 </script>

@@ -8,16 +8,12 @@ function attachArtistsListeners(){
 
 function nextArtist(e) {
   e.preventDefault();
+  attachPaintingsListeners()
   var nextId = parseInt($(".js-next").attr("data-id")) + 1;
   $.get("/artists/" + nextId + ".json", function(nextArtist) {
-    $(".artistName").text(nextArtist.name);
+    var template = Handlebars.compile(document.getElementById("artist-info-template").innerHTML);
+    $(".artist-container")[0].innerHTML = template(nextArtist);
 
-    $(".artistBio").text(nextArtist.bio);
-    $(".js-artist-paintings").attr("data-id", nextArtist.id);
-    $(".js-artist-paintings")[0].pathname = "/artists/" + nextArtist.id + "/paintings"
-    $(".js-artist-paintings")[0].innerHTML = nextArtist.name + " paintings"
-    $(".js-next").attr("data-id", nextArtist.id);
-    $(".painting-container")[0].innerHTML = ''
     if (parseInt($("body").attr("data-user")) !== nextArtist.id) {
       $(".edit-bio").remove();
       $(".add-bio").remove();
