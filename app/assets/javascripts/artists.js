@@ -20,5 +20,15 @@ function nextArtist(e) {
     if (parseInt($("body").attr("data-last-user")) === nextArtist.id) { $(".js-next").remove(); }
     attachArtistsListeners();
     attachPaintingsListeners();
+    hideArtistPaintingsLink();
   });
 };
+
+ function hideArtistPaintingsLink() {
+   var id = parseInt($(".artistName").attr("data-id"))
+   $.get("/artists/" + id + "/paintings.json", function(paintings) {
+     if (paintings.toString() == [].toString()) {
+       $(".js-artist-paintings")[0].innerHTML = "No paintings yet"
+     }
+   })
+}
