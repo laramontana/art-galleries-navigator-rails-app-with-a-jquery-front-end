@@ -23,11 +23,11 @@ function showGalleryPaintings(e) {
 function showNewGallery(e) {
   e.preventDefault();
   var values = $(this).serialize();
-
+  this.reset()
   $.post("/galleries.json", values, function (gallery) {
     var template = Handlebars.compile(document.getElementById("new-gallery-template").innerHTML);
     $(".new-gallery")[0].innerHTML = template(gallery);
-    $(".js-now-at-gallery").on("click", showGalleryPaintings)
+    attachGalleriesListeners()
   })
 
 }
