@@ -10,8 +10,8 @@ function Gallery(attributes) {
 };
 
 Gallery.prototype.getHTML = function () {
-  var template = Handlebars.compile(document.getElementById("new-gallery-template").innerHTML);
-  $(".new-gallery")[0].innerHTML = template(this);
+  var template = Handlebars.compile($("#new-gallery-template").html());
+  $(".new-gallery").html(template(this));
 };
 
 function attachGalleriesListeners(){
@@ -23,9 +23,9 @@ function showGalleryPaintings(e) {
   e.preventDefault();
   var id = $(this).data("id");
   $.get("/galleries/" + id + ".json", function(paintings) {
-    var template = Handlebars.compile(document.getElementById("now-at-gallery-template").innerHTML);
+    var template = Handlebars.compile($("#now-at-gallery-template").html());
     var result = template(paintings);
-    $(".now-at-gallery-ul")[0].innerHTML = result;
+    $(".now-at-gallery-ul").html(result);
   });
 };
 
