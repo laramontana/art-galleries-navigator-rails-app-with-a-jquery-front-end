@@ -10,8 +10,7 @@ function Painting(attributes) {
 
 Painting.prototype.getGalleryPaintingsHTML = function () {
   var template = Handlebars.compile($("#now-at-gallery-template").html());
-  debugger
-  $(".now-at-gallery-ul").html(template(this));
+  $(".now-at-gallery-ul").append(template(this));
 };
 
 function attachPaintingsListeners(){

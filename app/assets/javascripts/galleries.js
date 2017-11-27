@@ -24,10 +24,7 @@ function showGalleryPaintings(e) {
   var galleryId = $(this).data("id");
   $.get("/galleries/" + galleryId + ".json", function(paintingsJSON) {
     paintings = paintingsJSON.map(function(paintingJSON) { return new Painting(paintingJSON) });
-    paintings.getGalleryPaintingsHTML();
-    // paintings.forEach(function(painting) {
-    //   painting.getGalleryPaintingsHTML();
-    // });
+    paintings.forEach(function(painting) { painting.getGalleryPaintingsHTML() });
   });
 };
 
