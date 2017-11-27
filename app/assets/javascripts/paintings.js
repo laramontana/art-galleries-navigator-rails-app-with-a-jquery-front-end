@@ -13,16 +13,20 @@ Painting.prototype.getGalleryPaintingsHTML = function () {
   $(".now-at-gallery-ul").append(template(this));
 };
 
-function attachPaintingsListeners(){
-  $(".js-artist-paintings").on("click", showPaintings);
+Painting.prototype.getArtistPaintingsHTML = function () {
+  var template = Handlebars.compile($("#painting-template").html());
+  $(".painting-container").append(template(this));
 };
 
-function showPaintings(e) {
+function attachPaintingsListeners(){
+  $(".js-artist-paintings").on("click", showArtistPaintings);
+};
+
+function showArtistPaintings(e) {
   e.preventDefault();
-  var id = $(this).data("id");
-  $.get("/artists/" + id + "/paintings.json", function(paintings) {
-    var template = Handlebars.compile(document.getElementById("painting-template").innerHTML);
-    var result = template(paintings);
-    $(".painting-container")[0].innerHTML = result;
+  var artistId = $(this).data("id");
+  $.get("/artists/" + artistId + "/paintings.json", function(paintingsJSON) {
+    paintings = paintingsJSON.map(function(paintingJSON) { return new Painting(paintingJSON) });
+    paintings.forEach(function(painting) { painting.getArtistPaintingsHTML() });
   });
 };
