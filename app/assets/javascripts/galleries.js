@@ -2,6 +2,18 @@ $(document).on("turbolinks:load", function(){
   attachGalleriesListeners();
 });
 
+function Gallery(attributes) {
+  this.id = attributes.id;
+  this.title = attributes.title;
+  this.city = attributes.city;
+  this.price = attributes.price;
+};
+
+Gallery.prototype.getHTML = function () {
+  var template = Handlebars.compile(document.getElementById("new-gallery-template").innerHTML);
+  $(".new-gallery")[0].innerHTML = template(this);
+};
+
 function attachGalleriesListeners(){
   $(".js-now-at-gallery").on("click", showGalleryPaintings);
   $(".js-new-gallery-form").on("submit", showNewGallery);
@@ -21,9 +33,9 @@ function showNewGallery(e) {
   e.preventDefault();
   var values = $(this).serialize();
   this.reset();
-  $.post("/galleries.json", values, function (gallery) {
-    var template = Handlebars.compile(document.getElementById("new-gallery-template").innerHTML);
-    $(".new-gallery")[0].innerHTML = template(gallery);
+  $.post("/galleries.json", values, function (galleryJSON) {
+    var gallery = new Gallery(galleryJSON)
+    galleryHTML = gallery.getHTML();
     attachGalleriesListeners();
-  })
-}
+  });
+};
