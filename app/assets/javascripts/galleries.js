@@ -9,7 +9,7 @@ function Gallery(attributes) {
   this.price = attributes.price;
 };
 
-Gallery.prototype.getHTML = function () {
+Gallery.prototype.getNewGalleryHTML = function() {
   var template = Handlebars.compile($("#new-gallery-template").html());
   $(".new-gallery").html(template(this));
 };
@@ -21,21 +21,23 @@ function attachGalleriesListeners(){
 
 function showGalleryPaintings(e) {
   e.preventDefault();
-  var id = $(this).data("id");
-  $.get("/galleries/" + id + ".json", function(paintings) {
-    var template = Handlebars.compile($("#now-at-gallery-template").html());
-    var result = template(paintings);
-    $(".now-at-gallery-ul").html(result);
+  var galleryId = $(this).data("id");
+  $.get("/galleries/" + galleryId + ".json", function(paintingsJSON) {
+    paintings = paintingsJSON.map(function(paintingJSON) { return new Painting(paintingJSON) });
+    paintings.getGalleryPaintingsHTML();
+    // paintings.forEach(function(painting) {
+    //   painting.getGalleryPaintingsHTML();
+    // });
   });
 };
 
 function showNewGallery(e) {
   e.preventDefault();
-  var values = $(this).serialize();
+  var formValues = $(this).serialize();
   this.reset();
-  $.post("/galleries.json", values, function (galleryJSON) {
+  $.post("/galleries.json", formValues, function(galleryJSON) {
     var gallery = new Gallery(galleryJSON)
-    galleryHTML = gallery.getHTML();
+    gallery.getNewGalleryHTML();
     attachGalleriesListeners();
   });
 };

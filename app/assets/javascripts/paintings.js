@@ -2,6 +2,18 @@ $(document).on("turbolinks:load", function(){
   attachPaintingsListeners();
 });
 
+function Painting(attributes) {
+  this.id = attributes.id;
+  this.title = attributes.title;
+  this.artistName = attributes.artist.name;
+};
+
+Painting.prototype.getGalleryPaintingsHTML = function () {
+  var template = Handlebars.compile($("#now-at-gallery-template").html());
+  debugger
+  $(".now-at-gallery-ul").html(template(this));
+};
+
 function attachPaintingsListeners(){
   $(".js-artist-paintings").on("click", showPaintings);
 };
