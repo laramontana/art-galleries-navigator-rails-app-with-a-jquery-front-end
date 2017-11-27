@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function(){
+$(document).ready(function(){
   attachArtistsListeners();
 });
 
@@ -24,7 +24,7 @@ function nextArtist(e) {
     var artist = new Artist(nextArtist)
     artist.getArtistInfoHTML();
     attachArtistsListeners();
-    attachPaintingsListeners();
+    // attachPaintingsListeners();
     hideArtistShowLinks(nextArtist);
   });
 };

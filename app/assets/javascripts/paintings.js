@@ -1,4 +1,4 @@
-$(document).on("turbolinks:load", function(){
+$(document).ready(function(){
   attachPaintingsListeners();
 });
 
@@ -19,10 +19,11 @@ Painting.prototype.getArtistPaintingsHTML = function () {
 };
 
 function attachPaintingsListeners(){
-  $(".js-artist-paintings").on("click", showArtistPaintings);
+  $(document).on("click", ".js-artist-paintings", showArtistPaintings);
 };
 
 function showArtistPaintings(e) {
+  console.log('im getting called')
   e.preventDefault();
   var artistId = $(this).data("id");
   $.get("/artists/" + artistId + "/paintings.json", function(paintingsJSON) {
