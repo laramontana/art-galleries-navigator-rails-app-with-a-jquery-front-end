@@ -20,9 +20,15 @@ class PaintingsController < ApplicationController
     end
   end
 
-  def index #artist_paintings_path GET    /artists/:artist_id/paintings
-    @artist = User.find_by(id: params[:artist_id])
-    @paintings = @artist.paintings
+  def index #artist_paintings_path GET    /artists/:artist_id/paintings /galleries/:galery_id/paintings
+    if params[:artist_id]
+      @artist = User.find_by(id: params[:artist_id])
+      @paintings = @artist.paintings
+    elsif params[:gallery_id]
+      @gallery = Gallery.find(params[:gallery_id])
+      @paintings = @gallery.paintings
+    end
+
     respond_to do |format|
       format.html { render :index }
       format.json { render json: @paintings }

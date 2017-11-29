@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
 
   resources :galleries, only: [:show] do
-    resources :paintings, only: [:new, :create]
+    resources :paintings, only: [:index, :new, :create]
   end
 
   resources :artists, only: [:show] do
