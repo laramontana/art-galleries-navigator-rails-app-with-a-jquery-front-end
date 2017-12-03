@@ -22,25 +22,9 @@ function attachGalleriesListeners(){
 function showGalleryPaintings(e) {
   e.preventDefault();
   var galleryId = $(this).data("id");
-  $.get("/galleries/" + galleryId + "/paintings.json", function(paintingsJSON) {
-
-    paintingsJSON.sort(function(painting1, painting2){
-      if painting1.title.toUpperCase()
-    })
-
-    for (var i = 0; i < paintingsJSON.length; i++) {
-      for(var n = 0; n < paintingsJSON.length - 1; i++) {
-        var firstItem = paintingsJSON[n]
-        var nextItem = paintingsJSON[n + 1]
-        if (firstItem.value < nextItem.value) {
-          paintingsJSON[n] = nextItem
-          paintingsJSON[n + 1] = firstItem
-        }
-      }
-    }
-
-
-    paintings = paintingsJSON.map(function(paintingJSON) { return new Painting(paintingJSON) });
+  $.get("/galleries/" + galleryId + ".json", function(paintingsJSON) {
+    paintingsJSONSorted = paintingsJSON.sort(sortPaintings)
+    paintings = paintingsJSONSorted.map(function(paintingJSON) { return new Painting(paintingJSON) });
     paintings.forEach(function(painting) { painting.getGalleryPaintingsHTML() });
   });
 };
