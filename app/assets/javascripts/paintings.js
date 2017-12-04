@@ -35,9 +35,9 @@ function attachPaintingsListeners(){
 function showArtistPaintings(e) {
   e.preventDefault();
   var artistId = $(this).data("id");
-  $.get("/artists/" + artistId + "/paintings.json", function(paintingsJSON) {
-    paintingsJSONSorted = paintingsJSON.sort(sortPaintings)
-    paintings = paintingsJSONSorted.map(function(paintingJSON) { return new Painting(paintingJSON) });
-    paintings.forEach(function(painting) { painting.getArtistPaintingsHTML() });
-  });
+  $.get("/artists/" + artistId + "/paintings.json", (paintingsJSON) =>
+    paintingsJSON.sort(sortPaintings)
+    .map(paintingJSON => new Painting(paintingJSON))
+    .forEach(painting => painting.getArtistPaintingsHTML())
+  );
 };
