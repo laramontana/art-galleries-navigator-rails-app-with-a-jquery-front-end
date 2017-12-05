@@ -8,6 +8,16 @@ function Painting(attributes) {
   this.artistName = attributes.artist.name;
 };
 
+function sortPaintings(painting1, painting2) {
+    if (painting1.title.toLowerCase() > painting2.title.toLowerCase()) {
+      return 1;
+    }
+    if (painting1.title.toLowerCase() < painting2.title.toLowerCase()) {
+      return -1;
+    }
+    return 0;
+}
+
 Painting.prototype.getGalleryPaintingsHTML = function () {
   var template = Handlebars.compile($("#now-at-gallery-template").html());
   $(".now-at-gallery-ul").append(template(this));
@@ -23,11 +33,11 @@ function attachPaintingsListeners(){
 };
 
 function showArtistPaintings(e) {
-  console.log('im getting called')
   e.preventDefault();
   var artistId = $(this).data("id");
-  $.get("/artists/" + artistId + "/paintings.json", function(paintingsJSON) {
-    paintings = paintingsJSON.map(function(paintingJSON) { return new Painting(paintingJSON) });
-    paintings.forEach(function(painting) { painting.getArtistPaintingsHTML() });
-  });
+  $.get("/artists/" + artistId + "/paintings.json", (paintingsJSON) =>
+    paintingsJSON.sort(sortPaintings)
+    .map(paintingJSON => new Painting(paintingJSON))
+    .forEach(painting => painting.getArtistPaintingsHTML())
+  );
 };

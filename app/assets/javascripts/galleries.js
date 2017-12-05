@@ -22,10 +22,11 @@ function attachGalleriesListeners(){
 function showGalleryPaintings(e) {
   e.preventDefault();
   var galleryId = $(this).data("id");
-  $.get("/galleries/" + galleryId + ".json", function(paintingsJSON) {
-    paintings = paintingsJSON.map(function(paintingJSON) { return new Painting(paintingJSON) });
-    paintings.forEach(function(painting) { painting.getGalleryPaintingsHTML() });
-  });
+  $.get("/galleries/" + galleryId + ".json", (paintingsJSON) =>
+    paintingsJSON.sort(sortPaintings)
+    .map(paintingJSON => new Painting(paintingJSON))
+    .forEach(painting => painting.getGalleryPaintingsHTML())
+  );
 };
 
 function showNewGallery(e) {
